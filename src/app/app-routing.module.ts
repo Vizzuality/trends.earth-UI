@@ -1,8 +1,8 @@
 import { ScriptComponent } from 'app/pages/script/script.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Angular2DataTableModule } from 'angular2-data-table';
-import { MaterialModule } from "@angular/material";
+import { MaterialModule } from '@angular/material';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   declarations: [ScriptComponent],
   imports: [
     MaterialModule,
-    Angular2DataTableModule,
+    NgxDatatableModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
