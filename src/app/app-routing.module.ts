@@ -1,27 +1,38 @@
-import { ScriptComponent } from 'app/pages/script/script.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { LoginComponent } from "app/pages/login/login.component";
+import { PrivateModule } from "app/pages/private/private.module";
+import { CheckLoginGuard } from "app/service/check-login.guard";
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'script'
+    redirectTo: 'private'
   },
   {
-    path: 'script',
-    component: ScriptComponent
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'private',
+    loadChildren: 'app/pages/private/private.module#PrivateModule'
   }
 ];
 
 @NgModule({
-  declarations: [ScriptComponent],
+  declarations: [
+    
+  ],
   imports: [
     MaterialModule,
-    NgxDatatableModule,
-    RouterModule.forRoot(routes)
+    PrivateModule,
+    RouterModule.forRoot(routes),
+  ],
+  providers: [
+    CheckLoginGuard
   ],
   exports: [RouterModule]
 })
