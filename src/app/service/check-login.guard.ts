@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 export class CheckLoginGuard implements CanActivateChild {
 
     canActivateChild() {
-        return false;
+        return true;
     }
 }

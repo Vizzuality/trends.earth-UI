@@ -9,7 +9,7 @@ import { CheckLoginGuard } from "app/service/check-login.guard";
 
 const routes: Routes = [
     {
-        path: 'private',
+        path: '',
         component: PrivateComponent,
         canActivateChild: [CheckLoginGuard],
         children:[{
@@ -21,7 +21,7 @@ const routes: Routes = [
             path: 'script',
             component: ScriptComponent
         }]
-    }     
+    }
 ];
 
 @NgModule({

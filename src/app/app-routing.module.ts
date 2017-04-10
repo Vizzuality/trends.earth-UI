@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from "app/pages/login/login.component";
-import { PrivateModule } from "app/pages/private/private.module";
+
 import { CheckLoginGuard } from "app/service/check-login.guard";
 
 const routes: Routes = [
@@ -24,11 +24,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    
+
   ],
   imports: [
     MaterialModule,
-    PrivateModule,
+
     RouterModule.forRoot(routes),
   ],
   providers: [
