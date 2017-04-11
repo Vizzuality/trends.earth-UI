@@ -1,1 +1,16 @@
-<a [routerLink]="['/private','script']">hola</a>
+<div class="login">
+  <md-card class="example-card">
+    <md-card-content style="width: 250px">
+      <div class="avatar">
+        <span>GEF</span>
+      </div>
+      <md-input-container class="email">
+        <input mdInput placeholder="Email" name="email" ngModel #email="ngModel">
+      </md-input-container>
+      <md-input-container>
+        <input mdInput type="password" placeholder="Password" name="password" ngModel #password="ngModel">
+      </md-input-container>
+      <button md-raised-button color="primary" (click)="onClick(email.value, password.value)">Login</button>
+    </md-card-content>
+  </md-card>
+</div>

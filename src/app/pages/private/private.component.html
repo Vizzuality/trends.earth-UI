@@ -3,8 +3,12 @@
 <div class="menu">
     <md-sidenav-container>
         
-        <md-sidenav mode="side" opened="true">    
-            <h3>Menu</h3>
+        <md-sidenav mode="side" opened="true">   
+            <md-list>
+                <md-list-item><a md-button [routerLink]="['/private', 'user']">Users</a></md-list-item>
+                <md-list-item><a md-button [routerLink]="['/private', 'script']">Scripts</a></md-list-item>
+                <md-list-item><a md-button [routerLink]="['/private', 'execution']">Executions</a></md-list-item>
+            </md-list>
         </md-sidenav>
 
         <div class="content">

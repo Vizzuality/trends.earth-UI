@@ -5,22 +5,45 @@ import { PrivateComponent } from "app/pages/private/private.component";
 import { MaterialModule } from "@angular/material";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { HeaderComponent } from "app/shared/header/header.component";
-import { CheckLoginGuard } from "app/service/check-login.guard";
+import { CheckLoginGuard } from "app/services/check-login.guard";
+import { ScriptService } from "app/services/script.service";
+import { CommonModule } from "@angular/common";
+import { ExecutionComponent } from "app/pages/private/execution/execution.component";
+import { UserComponent } from "app/pages/private/user/user.component";
+import { ExecutionService } from "app/services/execution.service";
+import { UserService } from "app/services/user.service";
+import { RequestOptions } from "@angular/http";
+import { OauthRequestOptions } from "app/services/oauth-request.service";
+import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 
 const routes: Routes = [
     {
         path: '',
         component: PrivateComponent,
         canActivateChild: [CheckLoginGuard],
-        children:[{
-            path: '',
-            pathMatch: 'full',
-            redirectTo: 'script'
-        },
-        {
-            path: 'script',
-            component: ScriptComponent
-        }]
+        children:[
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'script'
+            },
+            {
+                path: 'script',
+                component: ScriptComponent
+            },
+             {
+                path: 'script/:slug/execution',
+                component: ExecutionComponent
+            },
+            {
+                path: 'execution',
+                component: ExecutionComponent
+            },
+            {
+                path: 'user',
+                component: UserComponent
+            }
+        ]
     }
 ];
 
@@ -28,14 +51,27 @@ const routes: Routes = [
     declarations: [
         ScriptComponent,
         HeaderComponent,
-        PrivateComponent
+        PrivateComponent,
+        ExecutionComponent,
+        UserComponent,
+        LogViewerComponent
     ],
     imports: [
         RouterModule.forChild(routes),
         MaterialModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        CommonModule
     ],
-    providers: [CheckLoginGuard],
+    entryComponents: [
+        LogViewerComponent
+    ],
+    providers: [
+        { provide: RequestOptions, useClass: OauthRequestOptions },
+        CheckLoginGuard,
+        ScriptService,
+        ExecutionService, 
+        UserService
+    ],
     exports: [RouterModule]
 })
 export class PrivateModule{
