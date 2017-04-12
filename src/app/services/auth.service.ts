@@ -60,4 +60,10 @@ export class AuthService {
         this.tokenService.token = null;
         this.router.navigate(['/login']);
     }
+
+    recoverPass(email:string){
+        return this.http.post(`${environment.apiUrl}/api/v1/user/${email}/recover-password`, {})
+        .map(response => response.json()).toPromise()
+        .then((body:any) => this.tokenService.token = body.access_token);
+    }
 }

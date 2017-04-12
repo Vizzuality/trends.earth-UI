@@ -12,11 +12,13 @@ import 'rxjs';
 import { LoginComponent } from "app/pages/login/login.component";
 import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { AuthService, TokenService } from "app/services/auth.service";
+import { RecoverPasswordComponent } from "app/pages/recover-password/recover-password.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RecoverPasswordComponent
   ],
   imports: [
     BrowserModule,
