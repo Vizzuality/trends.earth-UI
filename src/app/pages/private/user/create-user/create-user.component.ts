@@ -11,11 +11,11 @@ import { UserService } from "app/services/user.service";
 }
 
 @Component({
-    selector: 'gef-user-maker',
-    templateUrl: './user-maker.component.html',
-    styleUrls: ['./user-maker.component.scss']
+    selector: 'gef-create-user',
+    templateUrl: './create-user.component.html',
+    styleUrls: ['./create-user.component.scss']
 })
-export class UserMakerComponent {
+export class CreateUserComponent {
 
   State:typeof State = State;
   state:State = State.PENDING;

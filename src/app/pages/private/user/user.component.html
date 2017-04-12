@@ -1,4 +1,4 @@
-<button mdTooltip="Create User" [mdTooltipPosition]="'left'" class="add-button" md-fab (click)="createUser()"><md-icon>add</md-icon></button>
+<button class="fixed-button" mdTooltip="Create User" [mdTooltipPosition]="'left'" md-fab (click)="createUser()"><md-icon>add</md-icon></button>
 <ngx-datatable
   #datatable
   class='material expandable'
@@ -14,5 +14,15 @@
   <ngx-datatable-column name="Email">
   </ngx-datatable-column>
   <ngx-datatable-column name="Role">
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    [width]="100"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <md-icon mdTooltip="Update User" [mdTooltipPosition]="'left'" class="update-button" (click)="updateUser(row)">build</md-icon>
+    </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
