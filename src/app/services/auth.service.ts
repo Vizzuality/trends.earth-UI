@@ -58,6 +58,6 @@ export class AuthService {
         this.user = null;
         this.token = null;
         this.tokenService.token = null;
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
     }
 }
