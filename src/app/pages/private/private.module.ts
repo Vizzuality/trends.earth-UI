@@ -21,6 +21,8 @@ import { ResultViewerComponent } from 'app/pages/private/execution/result-viewer
 import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
 import { CreateUserComponent } from "app/pages/private/user/create-user/create-user.component";
 import { UpdateUserComponent } from "app/pages/private/user/update-user/update-user.component";
+import { LoadingInterceptor } from "app/services/loading-interceptor.service";
+import { HttpInterceptorModule } from "ng2-http-interceptor/dist";
 
 
 const routes: Routes = [
@@ -73,7 +75,8 @@ const routes: Routes = [
         NgxDatatableModule,
         CommonModule,
         FormsModule,
-        CustomFormsModule
+        CustomFormsModule,
+        HttpInterceptorModule
     ],
     entryComponents: [
         LogViewerComponent,
@@ -84,6 +87,7 @@ const routes: Routes = [
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },
+        LoadingInterceptor,
         CheckLoginGuard,
         ScriptService,
         ExecutionService,

@@ -1,5 +1,6 @@
 <div md-dialog-content>
-  <h4>Create new script</h4>
+  <h4 *ngIf="!script">Create new script</h4>
+  <h4 *ngIf="script">Update script</h4>
   <form #form="ngForm" (ngSubmit)="form.valid">
     <div class="file">
       <input type="file" name="file" #file (change)="fileDom.value = changeFile(file)" [hidden]="true" accept=".gz"/>
@@ -15,6 +16,6 @@
   </form>
 </div>
 <div md-dialog-actions>
-  <button md-button (click)="form.valid && save(form.value)">Save</button>
+  <button md-button (click)="selectedFile && save(form.value)">{{ script? 'Update': 'Save'}}</button>
   <button md-button md-dialog-close>Close</button>
 </div>

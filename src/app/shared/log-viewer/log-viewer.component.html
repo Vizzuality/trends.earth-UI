@@ -1,5 +1,5 @@
 <div md-dialog-content #content>
-    <pre *ngFor="let log of logs">{{ (log.level ? log.level : '') + log.register_date  }}: {{ log.text }}</pre>
+    <pre *ngFor="let log of logs">{{ log.register_date  }}: {{ log.text }}</pre>
 </div>
 <div md-dialog-actions>
   <button md-button md-dialog-close>Close</button>

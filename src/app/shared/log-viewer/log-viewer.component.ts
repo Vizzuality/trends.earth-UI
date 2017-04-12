@@ -14,7 +14,7 @@ import { ScriptLogModel } from "app/models/script-log.model";
         './log-viewer.component.scss'
     ]
 })
-export class LogViewerComponent implements OnInit, OnDestroy {
+export class LogViewerComponent implements OnDestroy {
 
     @ViewChild('content')
     content;
@@ -23,6 +23,8 @@ export class LogViewerComponent implements OnInit, OnDestroy {
     type: string;
     interval;
     constructor(public dialogRef:MdDialogRef<LogViewerComponent>, private scriptService:ScriptService, private executionService: ExecutionService){
+      this.updateLog();
+      this.interval = setInterval(this.updateLog.bind(this), 1000);
     }
 
     updateLog(){
@@ -40,10 +42,6 @@ export class LogViewerComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnInit(){
-        this.updateLog();
-        this.interval = setInterval(this.updateLog.bind(this), 1000);
-    }
 
     ngOnDestroy() {
         clearInterval(this.interval);
