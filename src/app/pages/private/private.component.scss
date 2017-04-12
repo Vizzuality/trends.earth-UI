@@ -8,12 +8,17 @@ md-sidenav-container{
         md-list {
             padding:0;
             md-list-item {
+                color: #444;
                 padding: 0;
                 a {
                     width: 100%;
                     text-align: left;
                     padding-left: 20px;
                     padding-right: 0;
+
+                    .icon{
+                        padding: 0 8px 0 0;
+                    }
                 }
             }
         }

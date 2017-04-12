@@ -11,6 +11,7 @@ html, body, app-root, gef-private{
     height: 100%;
     display: flex;
     flex-direction: column;
+    color: #444;
 
     &>.menu {
         display: flex;

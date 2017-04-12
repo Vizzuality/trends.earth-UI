@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
+import { Router } from "@angular/router";
 
 
 @Injectable()
@@ -32,7 +33,7 @@ export class AuthService {
     user = null;
     token:string = null;
 
-    constructor(private http:Http, private tokenService: TokenService){
+    constructor(private http:Http, private tokenService: TokenService, private router: Router){
 
     }
 
@@ -53,5 +54,10 @@ export class AuthService {
         }).toPromise();
     }
 
-    logout(){}
+    logout(){
+        this.user = null;
+        this.token = null;
+        this.tokenService.token = null;
+        this.router.navigate(['/']);
+    }
 }
