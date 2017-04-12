@@ -18,6 +18,7 @@ import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
+import { UserMakerComponent } from "app/shared/user-maker/user-maker.component";
 
 const routes: Routes = [
     {
@@ -58,7 +59,8 @@ const routes: Routes = [
         ExecutionComponent,
         UserComponent,
         LogViewerComponent,
-        CreateScriptComponent
+        CreateScriptComponent,
+        UserMakerComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -70,7 +72,8 @@ const routes: Routes = [
     ],
     entryComponents: [
         LogViewerComponent,
-        CreateScriptComponent
+        CreateScriptComponent,
+        UserMakerComponent
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },

@@ -16,4 +16,13 @@ export class UserService {
         .map(response => response.json()).map(body => body.data);
     }
 
+    create(email:string, password:string, role:string){
+        return this.http.post(`${environment.apiUrl}/api/v1/user`, {
+            email,
+            password,
+            role
+        })
+        .map(response => response.json()).map(body => body.data).toPromise();
+    }
+
 }

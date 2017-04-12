@@ -1,0 +1,25 @@
+.user {
+  flex-flow: row wrap;
+  display: flex;
+  box-sizing: border-box;
+  max-height: 100%;
+  justify-content: space-around;
+  align-items: stretch;
+  align-content: stretch;
+  md-card {
+    md-input-container, md-select {
+      width: 100%;
+      margin: 20px 0 0 0;
+    }
+    .submit-button{
+        margin: 20px 0 0 0;
+        button {
+            margin: 0 auto;
+            display: block;
+        }
+    }
+    .unauthorized{
+        margin: 20px 0 0 0;
+    }
+  }
+}

@@ -1,5 +1,5 @@
-<button md-button (click)="createScript()">New</button>
-<button md-button (click)="update()">Update</button>
+<button class="fixed-button level-2" md-mini-fab (click)="update()"><md-icon>refresh</md-icon></button>
+<button class="fixed-button" md-fab (click)="createScript()"><md-icon>add</md-icon></button>
 <ngx-datatable
   #datatable
   class='material expandable'
