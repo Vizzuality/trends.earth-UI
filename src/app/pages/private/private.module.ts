@@ -1,3 +1,4 @@
+import { CreateScriptComponent } from 'app/pages/private/script/create-script/create-script.component';
 import { NgModule } from '@angular/core';
 import { ScriptComponent } from "app/pages/private/script/script.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -56,7 +57,8 @@ const routes: Routes = [
         PrivateComponent,
         ExecutionComponent,
         UserComponent,
-        LogViewerComponent
+        LogViewerComponent,
+        CreateScriptComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -67,13 +69,14 @@ const routes: Routes = [
         CustomFormsModule
     ],
     entryComponents: [
-        LogViewerComponent
+        LogViewerComponent,
+        CreateScriptComponent
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },
         CheckLoginGuard,
         ScriptService,
-        ExecutionService, 
+        ExecutionService,
         UserService
     ],
     exports: [RouterModule]

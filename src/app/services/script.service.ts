@@ -21,4 +21,11 @@ export class ScriptService {
         .map(response => response.json()).map(body => body.data);
     }
 
+    createScript(name, file) {
+      let formData:FormData = new FormData();
+      formData.append('file', file, file.name);
+
+      return this.http.post(`${environment.apiUrl}/api/v1/script`, formData).map(response => response.json());
+    }
+
 }

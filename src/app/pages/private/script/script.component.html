@@ -1,3 +1,5 @@
+<button md-button (click)="createScript()">New</button>
+<button md-button (click)="update()">Update</button>
 <ngx-datatable
   #datatable
   class='material expandable'
@@ -49,5 +51,5 @@
       <md-icon (click)="viewLogs(row)">subject</md-icon>
     </ng-template>
   </ngx-datatable-column>
-  
+
 </ngx-datatable>

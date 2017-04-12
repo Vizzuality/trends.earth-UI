@@ -1,5 +1,5 @@
 
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { MdDialogRef } from "@angular/material";
 import { ScriptService } from "app/services/script.service";
 
@@ -13,6 +13,8 @@ import { ScriptService } from "app/services/script.service";
 })
 export class LogViewerComponent implements OnInit, OnDestroy {
 
+    @ViewChild('content')
+    content;
     logs:Array<string> = [];
     slug:string;
     interval;
@@ -25,13 +27,14 @@ export class LogViewerComponent implements OnInit, OnDestroy {
             lastId = (<any>this.logs[this.logs.length - 1]).id;
         }
         this.scriptService.getLogs(this.slug, lastId).toPromise().then((body) => {
-            this.logs = this.logs.concat(body)
+            this.logs = this.logs.concat(body);
+            this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
         });
     }
 
     ngOnInit(){
         this.updateLog();
-        setInterval(this.updateLog.bind(this), 1000);
+        this.interval = setInterval(this.updateLog.bind(this), 1000);
     }
 
     ngOnDestroy() {
