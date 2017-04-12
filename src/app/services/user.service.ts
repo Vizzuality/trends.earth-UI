@@ -25,4 +25,13 @@ export class UserService {
         .map(response => response.json()).map(body => body.data).toPromise();
     }
 
+    update(userId:string, password:string, role:string){
+        return this.http.patch(`${environment.apiUrl}/api/v1/user/${userId}`, {
+            password,
+            role
+        })
+        .map(response => response.json()).map(body => body.data).toPromise();
+    }
+
+
 }

@@ -1,0 +1,29 @@
+<div md-dialog-content #content>
+
+    <div class="update-user">
+      
+        <form #form="ngForm" (ngSubmit)="form.valid && createUser(form.value)">
+            <md-input-container>
+                <input mdInput placeholder="New Password" required type="password" name="password" ngModel #password="ngModel">
+                <md-error *ngIf="password.errors?.required">Password is required</md-error>
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Repeat New Password" required type="password" name="certainPassword" ngModel #certainPassword="ngModel" [equalTo]="password">
+                <md-error *ngIf="certainPassword.errors?.equalTo">Passwords are not equal</md-error>
+            </md-input-container>
+            <md-select placeholder="Role" [(ngModel)]="role" name="role">
+                <md-option *ngFor="let role of roles" [value]="role">{{ role }}</md-option>
+            </md-select>
+            <div class="submit-button">
+                <button mdInput md-raised-button color="primary" type="submit">
+                    <span>SEND</span>
+                    <!--<md-progress-spinner mode="indeterminate" color="warn" *ngIf="state == State.REQUESTING"></md-progress-spinner>-->
+                </button>
+            </div>
+        </form>
+        <md-error class="unauthorized" *ngIf="state == State.ERROR">Error updating user</md-error>
+        <md-error class="unauthorized" *ngIf="state == State.SUCCESS">User updated successfully</md-error>
+
+    </div>
+    
+</div>

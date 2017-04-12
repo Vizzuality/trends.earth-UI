@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "app/services/user.service";
 import { Observable } from "rxjs/Observable";
-import { UserMakerComponent } from "app/shared/user-maker/user-maker.component";
 import { MdDialog } from "@angular/material";
+import { CreateUserComponent } from "app/pages/private/user/create-user/create-user.component";
+import { UpdateUserComponent } from "app/pages/private/user/update-user/update-user.component";
+import { Observer } from "rxjs/Rx";
 
 @Component({
   selector: 'gef-ui-user',
@@ -13,7 +15,10 @@ import { MdDialog } from "@angular/material";
 })
 export class UserComponent implements OnInit{
 
-    users$:Observable<any> = null;
+    users$:Observable<any> = Observable.create(observer => {
+      this.observer = observer;
+    });
+    observer: Observer<any>;
     @ViewChild('datatable')
     table = null;
 
@@ -22,16 +27,28 @@ export class UserComponent implements OnInit{
     }
 
     ngOnInit(){
-      this.users$ = this.userService.getAll();
-    }
-
-    toggleExpandRow(e, row) {
-      e.preventDefault();
-      this.table.rowDetail.toggleExpandRow(row);
+      this.updateUsersInfo();
     }
 
     createUser() {
-      let dialogRef = this.mdDialog.open(UserMakerComponent);
+      this.mdDialog.open(CreateUserComponent).afterClosed().toPromise().then(() => {
+        this.updateUsersInfo();
+      });
+    }
+
+    updateUser(row) {
+      const userId = row.id;
+      let dialogRef = this.mdDialog.open(UpdateUserComponent)
+      dialogRef.componentInstance.id = row.id;
+      dialogRef.afterClosed().toPromise().then(() => {
+        this.updateUsersInfo();
+      });
+    }
+
+    updateUsersInfo(){
+      this.userService.getAll().toPromise().then((body) => {
+        this.observer.next(body);
+      });
     }
     
 }
