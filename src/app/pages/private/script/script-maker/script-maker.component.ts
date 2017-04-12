@@ -4,12 +4,12 @@ import { ScriptService } from "app/services/script.service";
 
 @Component({
   moduleId: module.id,
-  selector: 'create-script',
-  templateUrl: 'create-script.component.html',
-  styleUrls: ['./create-script.component.scss']
+  selector: 'script-maker',
+  templateUrl: 'script-maker.component.html',
+  styleUrls: ['./script-maker.component.scss']
 })
 
-export class CreateScriptComponent implements OnInit {
+export class ScriptMakerComponent implements OnInit {
 
   @ViewChild('file')
   file;
@@ -18,7 +18,7 @@ export class CreateScriptComponent implements OnInit {
 
   selectedFile: null;
 
-  constructor(public dialogRef:MdDialogRef<CreateScriptComponent>, private scriptService:ScriptService){
+  constructor(public dialogRef:MdDialogRef<ScriptMakerComponent>, private scriptService:ScriptService){
   }
 
   ngOnInit() { }

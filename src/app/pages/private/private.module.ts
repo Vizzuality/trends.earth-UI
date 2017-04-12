@@ -1,4 +1,3 @@
-import { CreateScriptComponent } from 'app/pages/private/script/create-script/create-script.component';
 import { NgModule } from '@angular/core';
 import { ScriptComponent } from "app/pages/private/script/script.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -19,6 +18,7 @@ import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
 import { UserMakerComponent } from "app/shared/user-maker/user-maker.component";
+import { ScriptMakerComponent } from "app/pages/private/script/script-maker/script-maker.component";
 
 const routes: Routes = [
     {
@@ -59,7 +59,7 @@ const routes: Routes = [
         ExecutionComponent,
         UserComponent,
         LogViewerComponent,
-        CreateScriptComponent,
+        ScriptMakerComponent,
         UserMakerComponent
     ],
     imports: [
@@ -72,7 +72,7 @@ const routes: Routes = [
     ],
     entryComponents: [
         LogViewerComponent,
-        CreateScriptComponent,
+        ScriptMakerComponent,
         UserMakerComponent
     ],
     providers: [
