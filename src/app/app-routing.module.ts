@@ -4,7 +4,7 @@ import { MaterialModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from "app/pages/login/login.component";
 
-import { CheckLoginGuard } from "app/service/check-login.guard";
+import { CheckLoginGuard } from "app/services/check-login.guard";
 
 const routes: Routes = [
   {

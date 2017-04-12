@@ -15,6 +15,8 @@ import { UserService } from "app/services/user.service";
 import { RequestOptions } from "@angular/http";
 import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation'
 
 const routes: Routes = [
     {
@@ -60,7 +62,9 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         MaterialModule,
         NgxDatatableModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        CustomFormsModule
     ],
     entryComponents: [
         LogViewerComponent
