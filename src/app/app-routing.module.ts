@@ -5,6 +5,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from "app/pages/login/login.component";
 
 import { CheckLoginGuard } from "app/services/check-login.guard";
+import { RecoverPasswordComponent } from "app/pages/recover-password/recover-password.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'recover-password',
+    component: RecoverPasswordComponent
   },
   {
     path: 'private',
@@ -28,7 +33,6 @@ const routes: Routes = [
   ],
   imports: [
     MaterialModule,
-
     RouterModule.forRoot(routes),
   ],
   providers: [
