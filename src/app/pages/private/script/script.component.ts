@@ -1,10 +1,10 @@
 import { Observer } from 'rxjs/Rx';
-import { CreateScriptComponent } from 'app/pages/private/script/create-script/create-script.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScriptService } from "app/services/script.service";
 import { Observable } from "rxjs/Observable";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { MdDialog } from "@angular/material";
+import { ScriptMakerComponent } from "app/pages/private/script/script-maker/script-maker.component";
 
 @Component({
   selector: 'gef-ui-script',
@@ -47,7 +47,7 @@ export class ScriptComponent implements OnInit{
     }
 
     createScript() {
-      this.mdDialog.open(CreateScriptComponent).afterClosed().toPromise().then(() => {
+      this.mdDialog.open(ScriptMakerComponent).afterClosed().toPromise().then(() => {
         this.update();
       });
 
