@@ -17,7 +17,7 @@ import { AuthService } from "app/services/auth.service";
 export class LoginComponent implements OnInit {
 
   State:typeof State = State;
-  state:State = State.REQUESTING;
+  state:State = State.PENDING;
 
   constructor(private authService:AuthService, private router: Router) { }
 

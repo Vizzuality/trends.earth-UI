@@ -17,6 +17,7 @@ import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
+import { UserCreationComponent } from "app/pages/private/user/create/user-creation.component";
 
 const routes: Routes = [
     {
@@ -44,6 +45,10 @@ const routes: Routes = [
             {
                 path: 'user',
                 component: UserComponent
+            },
+            {
+                path: 'user/create',
+                component: UserCreationComponent
             }
         ]
     }
@@ -56,6 +61,7 @@ const routes: Routes = [
         PrivateComponent,
         ExecutionComponent,
         UserComponent,
+        UserCreationComponent,
         LogViewerComponent
     ],
     imports: [
