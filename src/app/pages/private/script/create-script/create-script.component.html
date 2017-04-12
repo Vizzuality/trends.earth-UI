@@ -1,10 +1,6 @@
 <div md-dialog-content>
   <h4>Create new script</h4>
   <form #form="ngForm" (ngSubmit)="form.valid">
-    <md-input-container>
-      <input mdInput placeholder="Name" required type="text" name="name" ngModel #name="ngModel">
-      <md-error *ngIf="name.errors?.required">Name is required</md-error>
-    </md-input-container>
     <div class="file">
       <input type="file" name="file" #file (change)="fileDom.value = changeFile(file)" [hidden]="true" accept=".gz"/>
       <md-input-container>

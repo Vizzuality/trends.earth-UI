@@ -18,7 +18,8 @@ import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation'
 import { UserMakerComponent } from "app/shared/user-maker/user-maker.component";
-import { ScriptMakerComponent } from "app/pages/private/script/script-maker/script-maker.component";
+import { ResultViewerComponent } from 'app/pages/private/execution/result-viewer/result-viewer.component';
+import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
 
 const routes: Routes = [
     {
@@ -59,8 +60,9 @@ const routes: Routes = [
         ExecutionComponent,
         UserComponent,
         LogViewerComponent,
-        ScriptMakerComponent,
-        UserMakerComponent
+        CreateScriptComponent,
+        UserMakerComponent,
+        ResultViewerComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -72,8 +74,9 @@ const routes: Routes = [
     ],
     entryComponents: [
         LogViewerComponent,
-        ScriptMakerComponent,
-        UserMakerComponent
+        CreateScriptComponent,
+        UserMakerComponent,
+        ResultViewerComponent
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },

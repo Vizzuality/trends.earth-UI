@@ -1,7 +1,10 @@
+import { ExecutionService } from 'app/services/execution.service';
 
 import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { MdDialogRef } from "@angular/material";
 import { ScriptService } from "app/services/script.service";
+import { ExecutionLogModel } from "app/models/execution-log.model";
+import { ScriptLogModel } from "app/models/script-log.model";
 
 
 @Component({
@@ -15,10 +18,11 @@ export class LogViewerComponent implements OnInit, OnDestroy {
 
     @ViewChild('content')
     content;
-    logs:Array<string> = [];
-    slug:string;
+    logs:Array<ScriptLogModel | ExecutionLogModel> = [];
+    id:string;
+    type: string;
     interval;
-    constructor(public dialogRef:MdDialogRef<LogViewerComponent>, private scriptService:ScriptService){
+    constructor(public dialogRef:MdDialogRef<LogViewerComponent>, private scriptService:ScriptService, private executionService: ExecutionService){
     }
 
     updateLog(){
@@ -26,10 +30,14 @@ export class LogViewerComponent implements OnInit, OnDestroy {
         if (this.logs && this.logs.length > 0) {
             lastId = (<any>this.logs[this.logs.length - 1]).id;
         }
-        this.scriptService.getLogs(this.slug, lastId).toPromise().then((body) => {
-            this.logs = this.logs.concat(body);
-            this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
-        });
+        if (this.type === 'script') {
+          this.scriptService.getLogs(this.id, lastId).toPromise().then((body) => {
+              this.logs = this.logs.concat(body);
+              this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+          });
+        } else {
+
+        }
     }
 
     ngOnInit(){

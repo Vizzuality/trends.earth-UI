@@ -4,7 +4,8 @@ import { ScriptService } from "app/services/script.service";
 import { Observable } from "rxjs/Observable";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { MdDialog } from "@angular/material";
-import { ScriptMakerComponent } from "app/pages/private/script/script-maker/script-maker.component";
+import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
+import { ScriptModel } from "app/models/script.model";
 
 @Component({
   selector: 'gef-ui-script',
@@ -15,10 +16,10 @@ import { ScriptMakerComponent } from "app/pages/private/script/script-maker/scri
 })
 export class ScriptComponent implements OnInit{
 
-    scripts$:Observable<any> = Observable.create(observer => {
+    scripts$:Observable<ScriptModel[]> = Observable.create(observer => {
       this.observer = observer;
     });
-    observer: Observer<any>;
+    observer: Observer<ScriptModel[]>;
     @ViewChild('datatable')
     table = null;
 
@@ -31,7 +32,7 @@ export class ScriptComponent implements OnInit{
     }
 
     update() {
-      this.scriptService.getAll().toPromise().then((body) => {
+      this.scriptService.getAll().toPromise().then((body: ScriptModel[]) => {
         this.observer.next(body);
       });
     }
@@ -43,13 +44,25 @@ export class ScriptComponent implements OnInit{
 
     viewLogs(row) {
       let dialogRef = this.mdDialog.open(LogViewerComponent);
-      dialogRef.componentInstance.slug = row.id;
+      dialogRef.componentInstance.id = row.id;
+      dialogRef.componentInstance.type = 'script';
     }
 
     createScript() {
-      this.mdDialog.open(ScriptMakerComponent).afterClosed().toPromise().then(() => {
+      this.mdDialog.open(CreateScriptComponent).afterClosed().toPromise().then(() => {
         this.update();
       });
+    }
+
+    editScript(script) {
+      const dialogRef = this.mdDialog.open(CreateScriptComponent);
+      dialogRef.afterClosed().toPromise().then(() => {
+        this.update();
+      });
+      dialogRef.componentInstance.script = script;
+    }
+
+    downloadScript(row) {
 
     }
 
