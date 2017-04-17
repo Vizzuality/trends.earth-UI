@@ -21,10 +21,6 @@ import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { AuthService, TokenService } from "app/services/auth.service";
 import { RecoverPasswordComponent } from "app/pages/recover-password/recover-password.component";
 
-let locationStrategy:any = PathLocationStrategy;
-if (environment.production) {
-  locationStrategy = HashLocationStrategy;
-}
 
 @NgModule({
   declarations: [
@@ -45,7 +41,7 @@ if (environment.production) {
     AuthService,
     { provide: RequestOptions, useClass: OauthRequestOptions },
     { provide: APP_BASE_HREF, useValue: '/GEF-UI' },
-    { provide: LocationStrategy, useClass: locationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
