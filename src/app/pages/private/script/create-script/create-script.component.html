@@ -1,0 +1,21 @@
+<div md-dialog-content>
+  <h4 *ngIf="!script">Create new script</h4>
+  <h4 *ngIf="script">Update script</h4>
+  <form #form="ngForm" (ngSubmit)="form.valid">
+    <div class="file">
+      <input type="file" name="file" #file (change)="fileDom.value = changeFile(file)" [hidden]="true" accept=".gz"/>
+      <md-input-container>
+        <input mdInput placeholder="File" type="text" name="fileText"  ngModel #fileText="ngModel" disabled #fileDom required>
+        <md-hint class="mat-input-error" *ngIf="form.submitted && !selectedFile">File is required</md-hint>
+      </md-input-container>
+      <div>
+        <button md-button  (click)="file.click()">Select</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+<div md-dialog-actions>
+  <button md-button (click)="selectedFile && save(form.value)">{{ script? 'Update': 'Save'}}</button>
+  <button md-button md-dialog-close>Close</button>
+</div>

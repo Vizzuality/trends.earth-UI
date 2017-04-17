@@ -1,0 +1,62 @@
+<button class="fixed-button level-2" md-mini-fab (click)="update()"><md-icon>refresh</md-icon></button>
+<button class="fixed-button" md-fab (click)="createScript()"><md-icon>add</md-icon></button>
+<ngx-datatable
+  #datatable
+  class='material expandable'
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50"
+  [scrollbarV]="50"
+  [rows]='scripts$ | async'>
+  <!-- Row Detail Template -->
+  <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+    <ng-template let-row="row" ngx-datatable-row-detail-template>
+      <div style="padding-left:35px;">
+        <div><strong>Address</strong></div>
+        <div>{{row.name}}, {{row.id}}</div>
+      </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+  <!-- Column Templates -->
+    <ngx-datatable-column
+    [width]="50"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a
+        href="#"
+        [class.icon-right]="!row.$$expanded"
+        [class.icon-down]="row.$$expanded"
+        title="Expand/Collapse Row"
+        (click)="toggleExpandRow($event, row)">
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Slug">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Name">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Status">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Created date">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.created_at | date: 'dd/MM/yy HH:mm:ss'}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    [width]="150"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <md-icon class="icon-button" (click)="editScript(row)" mdTooltip="Edit script">edit</md-icon>
+      <md-icon class="icon-button" (click)="viewLogs(row)" mdTooltip="View build logs">subject</md-icon>
+      <md-icon class="icon-button" (click)="downloadScript(row)" mdTooltip="Download script">file_download</md-icon>
+    </ng-template>
+  </ngx-datatable-column>
+
+</ngx-datatable>

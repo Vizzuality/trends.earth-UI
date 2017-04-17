@@ -1,0 +1,77 @@
+<button class="fixed-button" md-fab (click)="update()"><md-icon>refresh</md-icon></button>
+<ngx-datatable
+  #datatable
+  class='material expandable'
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50"
+  [scrollbarV]="50"
+  [rows]='executions$ | async'>
+  <!-- Row Detail Template -->
+  <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+    <ng-template let-row="row" ngx-datatable-row-detail-template>
+      <div style="padding-left:35px;">
+        <div><strong>Address</strong></div>
+        <div>{{row.name}}, {{row.id}}</div>
+      </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+  <!-- Column Templates -->
+    <ngx-datatable-column
+    [width]="50"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a
+        href="#"
+        [class.icon-right]="!row.$$expanded"
+        [class.icon-down]="row.$$expanded"
+        title="Expand/Collapse Row"
+        (click)="toggleExpandRow($event, row)">
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Id">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Start">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.start_date | date: 'dd/MM/yy HH:mm:ss'}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="End">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.end_date | date: 'dd/MM/yy HH:mm:ss'}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Progress"
+    [width]="150"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <md-progress-bar
+          class="progress-execution"
+          [color]="primary"
+          [mode]="'determinate'"
+          [value]="row.progress">
+      </md-progress-bar>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Status">
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    [width]="120"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <md-icon class="icon-button" (click)="viewResults(row)" mdTooltip="View results">subject</md-icon>
+      <md-icon class="icon-button" (click)="downloadResults(row)" mdTooltip="Download results">file_download</md-icon>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>

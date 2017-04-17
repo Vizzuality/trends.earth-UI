@@ -1,0 +1,22 @@
+<gef-header></gef-header>
+<md-progress-bar *ngIf="loading.show" [mode]="loading.mode" style="margin-top: -5px;"></md-progress-bar>
+
+<div class="menu">
+    <md-sidenav-container>
+
+        <md-sidenav mode="side" opened="true">
+            <ul>
+                <li><a md-button [routerLink]="['/private', 'script']" routerLinkActive="mat-primary"><md-icon class="icon">code</md-icon>Scripts</a></li>
+                <li><a md-button [routerLink]="['/private', 'execution']" routerLinkActive="mat-primary"><md-icon class="icon">play_arrow</md-icon>Executions</a></li>
+                <li><a md-button [routerLink]="['/private', 'user']" routerLinkActive="mat-primary"><md-icon class="icon">account_circle</md-icon>Users</a></li>
+            </ul>
+        </md-sidenav>
+
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </md-sidenav-container>
+</div>
+
+
+

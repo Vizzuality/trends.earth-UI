@@ -1,0 +1,15 @@
+
+.ngx-datatable.scroll-vertical{
+    height: 75vh;
+}
+
+.add-button{
+  position: fixed;
+  right: 3%;
+  bottom: 24px;
+  z-index: 100;
+}
+
+.update-button{
+  cursor: pointer;
+}

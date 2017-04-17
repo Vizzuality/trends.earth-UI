@@ -1,0 +1,8 @@
+<div md-dialog-content>
+  <h4>Results</h4>
+  <pre>{{execution.results | json}}</pre>
+</div>
+<div md-dialog-actions>
+  <button md-button mdTooltip="Download results" (click)="downloadResults()"><md-icon>file_download</md-icon>JSON</button>
+  <button md-button md-dialog-close>Close</button>
+</div>

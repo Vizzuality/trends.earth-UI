@@ -1,0 +1,33 @@
+
+md-sidenav-container{
+
+    md-sidenav {
+        width: 200px;
+        box-shadow: 3px 0 6px rgba(0,0,0,.24);
+
+        ul {
+            padding:0;
+            list-style-type: none;
+            li {
+                color: #444;
+                padding: 0;
+                a {
+                    width: 100%;
+                    text-align: left;
+                    padding: 5px 0 5px 20px;
+                    .icon{
+                        padding: 0 20px 0 0;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .content {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+}
+
