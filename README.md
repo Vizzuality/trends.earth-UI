@@ -2,7 +2,7 @@
 
 This project belongs to the GEF Project.
 
-This repo implements the UI for the GEF Environment. A web app to explore and manage the API entities.
+This repo implements the UI of the GEF Environment. A web app to explore and manage the API entities.
 
 Check out the other parts of the GEF project:
 
