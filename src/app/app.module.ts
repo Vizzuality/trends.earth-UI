@@ -44,7 +44,7 @@ if (environment.production) {
     TokenService,
     AuthService,
     { provide: RequestOptions, useClass: OauthRequestOptions },
-    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: APP_BASE_HREF, useValue: '/GEF-UI' },
     { provide: LocationStrategy, useClass: locationStrategy }
   ],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { LoadingInterceptor } from "app/services/loading-interceptor.service";
   styleUrls: ['./private.component.scss']
 })
 export class PrivateComponent {
-  loading: boolean
+  loading: any
   constructor(private loadingInterceptor: LoadingInterceptor){
     this.loading = this.loadingInterceptor.loading;
   }
