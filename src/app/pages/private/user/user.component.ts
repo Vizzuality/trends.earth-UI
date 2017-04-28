@@ -40,6 +40,7 @@ export class UserComponent implements OnInit{
       const userId = row.id;
       let dialogRef = this.mdDialog.open(UpdateUserComponent)
       dialogRef.componentInstance.id = row.id;
+      dialogRef.componentInstance.role = row.role;
       dialogRef.afterClosed().toPromise().then(() => {
         this.updateUsersInfo();
       });
@@ -50,5 +51,5 @@ export class UserComponent implements OnInit{
         this.observer.next(body);
       });
     }
-    
+
 }

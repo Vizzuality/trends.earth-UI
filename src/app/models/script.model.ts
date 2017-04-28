@@ -1,3 +1,5 @@
+import { UserModel } from 'app/models/user.model';
+
 export interface ScriptModel {
   id?: string
   name: string
@@ -5,4 +7,5 @@ export interface ScriptModel {
   status: string
   user_id: string
   created_at: Date
+  user?: UserModel
 }

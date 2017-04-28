@@ -9,11 +9,14 @@
   [scrollbarV]="50"
   [rows]='executions$ | async'>
   <!-- Row Detail Template -->
-  <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+  <ngx-datatable-row-detail [rowHeight]="150" #myDetailRow>
     <ng-template let-row="row" ngx-datatable-row-detail-template>
-      <div style="padding-left:35px;">
-        <div><strong>Address</strong></div>
-        <div>{{row.name}}, {{row.id}}</div>
+      <div style="padding: 0 0 20px 35px;">
+        <div><strong>Detail</strong></div>
+        <div>Script: {{row.script?.name}}</div>
+        <div>Start: {{row.start_date | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+        <div *ngIf="row.end_date">End: {{row.end_date | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+        <div>Execution params: <pre>{{row.params | json}}</pre></div>
       </div>
     </ng-template>
   </ngx-datatable-row-detail>

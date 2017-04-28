@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@swimlane/ngx-datatable": "^7.3.0",
+    "angular2-notifications": "git+https://github.com/vizzuality/angular2-notifications",
     "core-js": "^2.4.1",
     "ng2-http-interceptor": "^1.4.0",
     "ng2-validation": "^4.0.0",

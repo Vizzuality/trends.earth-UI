@@ -58,7 +58,7 @@ export class ExecutionComponent implements OnInit{
     }
 
     downloadResults(row) {
-
+      this.executionService.downloadResults(row.id);
     }
 
 }

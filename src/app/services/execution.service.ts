@@ -13,7 +13,7 @@ export class ExecutionService {
     }
 
     getAll():Observable<ExecutionModel[]>{
-        return this.http.get(`${environment.apiUrl}/api/v1/execution`)
+        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script`)
         .map(response => response.json()).map(body => body.data);
     }
 
@@ -22,4 +22,7 @@ export class ExecutionService {
         .map(response => response.json()).map(body => body.data);
     }
 
+    downloadResults(id:string) {
+      window.open(`${environment.apiUrl}/api/v1/execution/${id}/download-results`)
+    }
 }

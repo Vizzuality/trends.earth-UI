@@ -13,8 +13,11 @@
   <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
     <ng-template let-row="row" ngx-datatable-row-detail-template>
       <div style="padding-left:35px;">
-        <div><strong>Address</strong></div>
-        <div>{{row.name}}, {{row.id}}</div>
+        <div><strong>Detail</strong></div>
+
+            <div>Created at: {{row.created_at | date:'dd/MM/yyyy HH:mm'}}</div>
+            <div>Owner: {{row.user?.email}}</div>
+
       </div>
     </ng-template>
   </ngx-datatable-row-detail>

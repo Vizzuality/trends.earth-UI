@@ -63,7 +63,7 @@ export class ScriptComponent implements OnInit{
     }
 
     downloadScript(row) {
-
+      this.scriptService.downloadScript(row.slug);
     }
 
 }

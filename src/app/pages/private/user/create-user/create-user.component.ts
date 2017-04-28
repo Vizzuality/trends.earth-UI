@@ -1,6 +1,8 @@
+import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user.service";
+import { NotificationsService } from "angular2-notifications";
 
 
  enum State {
@@ -22,16 +24,19 @@ export class CreateUserComponent {
   roles:Array<string> = ['USER', 'ADMIN'];
   role:string = 'USER';
 
-  constructor(private userService:UserService) { }
+  constructor(public dialogRef:MdDialogRef<CreateUserComponent>, private userService:UserService, private notificationsService: NotificationsService) { }
 
   createUser(form:any) {
     this.state = State.REQUESTING;
-    this.userService.create(form.email, form.password, form.role)
+    this.userService.create(form.email, form.role)
     .then(() => {
         this.state = State.SUCCESS;
+        this.notificationsService.success('User created correctly');
+        this.dialogRef.close();
     })
-    .catch(() => {
+    .catch((error) => {
         this.state = State.ERROR;
+        this.notificationsService.error('Error creating user', error.message);
     });
   }
 

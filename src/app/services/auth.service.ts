@@ -49,7 +49,7 @@ export class AuthService {
         return this.http.get(`${environment.apiUrl}/api/v1/user/me`)
         .map(response => response.json())
         .map(body => {
-            this.user = body;
+            this.user = body.data;
             return true;
         }).toPromise();
     }

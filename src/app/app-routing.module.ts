@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular/material';
+
+import {
+  LocationStrategy,
+  PathLocationStrategy,
+  HashLocationStrategy,
+  APP_BASE_HREF
+} from '@angular/common';
+
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from "app/pages/login/login.component";
 
@@ -36,7 +44,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   providers: [
-    CheckLoginGuard
+    CheckLoginGuard,
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   exports: [RouterModule]
 })

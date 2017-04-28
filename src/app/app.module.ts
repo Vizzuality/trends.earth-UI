@@ -1,3 +1,4 @@
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { environment } from 'environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -5,12 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialRootModule } from '@angular/material';
-import {
-  LocationStrategy,
-  PathLocationStrategy,
-  HashLocationStrategy,
-  APP_BASE_HREF
-} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,15 +28,14 @@ import { RecoverPasswordComponent } from "app/pages/recover-password/recover-pas
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
     MaterialRootModule,
     AppRoutingModule
   ],
   providers: [
     TokenService,
     AuthService,
-    { provide: RequestOptions, useClass: OauthRequestOptions },
-    { provide: APP_BASE_HREF, useValue: '/GEF-UI' },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: RequestOptions, useClass: OauthRequestOptions }
   ],
   bootstrap: [AppComponent]
 })
