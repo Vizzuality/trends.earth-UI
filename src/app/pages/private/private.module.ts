@@ -1,3 +1,4 @@
+import { ExecScriptComponent } from 'app/pages/private/script/exec-script/exec-script.component';
 import { NgModule } from '@angular/core';
 import { ScriptComponent } from "app/pages/private/script/script.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -73,7 +74,8 @@ const routes: Routes = [
         CreateUserComponent,
         UpdateUserComponent,
         ResultViewerComponent,
-        ProfileComponent
+        ProfileComponent,
+        ExecScriptComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -90,7 +92,8 @@ const routes: Routes = [
         CreateScriptComponent,
         CreateUserComponent,
         UpdateUserComponent,
-        ResultViewerComponent
+        ResultViewerComponent,
+        ExecScriptComponent
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },

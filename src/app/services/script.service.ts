@@ -1,3 +1,4 @@
+import { ExecutionModel } from 'app/models/execution.model';
 import { Injectable } from "@angular/core";
 import { environment } from "environments/environment";
 import { Http } from "@angular/http";
@@ -39,6 +40,10 @@ export class ScriptService {
 
     downloadScript(slug) {
       window.open(`${environment.apiUrl}/api/v1/script/${slug}/download?token=${this.tokenService.token}`);
+    }
+
+    runScript(slug, query): Observable<ExecutionModel> {
+      return this.http.get(`${environment.apiUrl}/api/v1/script/${slug}/run?${query}`).map(response => response.json()).map(el => el.data);
     }
 
 }

@@ -39,12 +39,12 @@
   </ngx-datatable-column>
   <ngx-datatable-column name="Id">
   </ngx-datatable-column>
-  <ngx-datatable-column name="Start">
-    <ng-template let-row="row" ngx-datatable-cell-template>
+  <ngx-datatable-column name="Start" prop="start_date" [comparator]="dateComparator">
+    <ng-template let-row="row"  ngx-datatable-cell-template>
       {{row.start_date | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="End">
+  <ngx-datatable-column name="End" prop="end_date" [comparator]="dateComparator">
     <ng-template let-row="row" ngx-datatable-cell-template>
       {{row.end_date | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
@@ -73,8 +73,8 @@
     [draggable]="false"
     [canAutoResize]="false">
     <ng-template let-row="row" ngx-datatable-cell-template>
-      <md-icon class="icon-button" (click)="viewResults(row)" mdTooltip="View results">subject</md-icon>
-      <md-icon class="icon-button" (click)="downloadResults(row)" mdTooltip="Download results">file_download</md-icon>
+      <md-icon class="icon-button" (click)="viewLogs(row)" mdTooltip="View logs">subject</md-icon>
+      <md-icon class="icon-button" (click)="viewResults(row)" mdTooltip="View results">file_download</md-icon>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>

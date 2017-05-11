@@ -6,6 +6,7 @@ import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { MdDialog } from "@angular/material";
 import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
 import { ScriptModel } from "app/models/script.model";
+import { ExecScriptComponent } from "app/pages/private/script/exec-script/exec-script.component";
 
 @Component({
   selector: 'gef-ui-script',
@@ -62,8 +63,25 @@ export class ScriptComponent implements OnInit{
       dialogRef.componentInstance.script = script;
     }
 
+    execScript(script) {
+      const dialogRef = this.mdDialog.open(ExecScriptComponent);
+      dialogRef.afterClosed().toPromise().then(() => {
+        this.update();
+      });
+      dialogRef.componentInstance.script = script;
+    }
+
     downloadScript(row) {
       this.scriptService.downloadScript(row.slug);
+    }
+
+    dateComparator(a, b) {
+      if (!a) {
+        return b;
+      } else if (!b) {
+        return a;
+      }
+      return new Date(b).getTime() - new Date(a).getTime();
     }
 
 }

@@ -6,6 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExecutionService } from "app/services/execution.service";
 import { Observable } from "rxjs/Observable";
 import { ActivatedRoute } from "@angular/router";
+import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 
 @Component({
   selector: 'gef-ui-execution',
@@ -57,8 +58,19 @@ export class ExecutionComponent implements OnInit{
       dialogRef.componentInstance.execution = row;
     }
 
-    downloadResults(row) {
-      this.executionService.downloadResults(row.id);
+    viewLogs(row) {
+      let dialogRef = this.mdDialog.open(LogViewerComponent);
+      dialogRef.componentInstance.id = row.id;
+      dialogRef.componentInstance.type = 'execution';
+    }
+
+    dateComparator(a, b) {
+      if (!a) {
+        return b;
+      } else if (!b) {
+        return a;
+      }
+      return new Date(b).getTime() - new Date(a).getTime();
     }
 
 }

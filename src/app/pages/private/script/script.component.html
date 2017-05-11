@@ -44,7 +44,7 @@
   </ngx-datatable-column>
   <ngx-datatable-column name="Status">
   </ngx-datatable-column>
-  <ngx-datatable-column name="Created date">
+  <ngx-datatable-column name="Created date"  prop="created_at" [comparator]="dateComparator">
     <ng-template let-row="row" ngx-datatable-cell-template>
       {{row.created_at | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
@@ -59,6 +59,7 @@
       <md-icon class="icon-button" (click)="editScript(row)" mdTooltip="Edit script">edit</md-icon>
       <md-icon class="icon-button" (click)="viewLogs(row)" mdTooltip="View build logs">subject</md-icon>
       <md-icon class="icon-button" (click)="downloadScript(row)" mdTooltip="Download script">file_download</md-icon>
+      <md-icon class="icon-button" (click)="execScript(row)" mdTooltip="Execute script">play_arrow</md-icon>
     </ng-template>
   </ngx-datatable-column>
 

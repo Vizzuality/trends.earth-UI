@@ -1,0 +1,23 @@
+<div md-dialog-content>
+  <h4>Exec script</h4>
+  <form #form="ngForm" (ngSubmit)="form.valid">
+    <div class="file" style="display: flex;  flex-direction: column">
+      <div *ngFor="let field of fields; let i = index" style="display: flex">
+        <md-input-container>
+            <input mdInput placeholder="Key" name="key-{{i}}" required type="text" [(ngModel)]="field.key" #key="ngModel">
+            <md-error *ngIf="key.errors?.required">Key is required</md-error>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Value" name="value-{{i}}" required type="text" [(ngModel)]="field.value" #value="ngModel">
+            <md-error *ngIf="value.errors?.required">Value is required</md-error>
+        </md-input-container>
+        <button md-button (click)="removeField(i)">Remove</button>
+      </div>
+      <button md-button (click)="addField()">Add field</button>
+    </div>
+  </form>
+</div>
+<div md-dialog-actions>
+  <button md-button (click)="exec(form.value)">Run</button>
+  <button md-button md-dialog-close>Close</button>
+</div>

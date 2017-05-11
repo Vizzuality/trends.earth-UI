@@ -22,23 +22,29 @@ export class LogViewerComponent implements OnDestroy {
     id:string;
     type: string;
     interval;
+
     constructor(public dialogRef:MdDialogRef<LogViewerComponent>, private scriptService:ScriptService, private executionService: ExecutionService){
       this.updateLog();
       this.interval = setInterval(this.updateLog.bind(this), 1000);
     }
 
     updateLog(){
-        let lastId = null;
-        if (this.logs && this.logs.length > 0) {
-            lastId = (<any>this.logs[this.logs.length - 1]).id;
-        }
-        if (this.type === 'script') {
-          this.scriptService.getLogs(this.id, lastId).toPromise().then((body) => {
-              this.logs = this.logs.concat(body);
-              this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
-          });
-        } else {
-
+        if (this.id) {
+          let lastId = null;
+          if (this.logs && this.logs.length > 0) {
+              lastId = (<any>this.logs[this.logs.length - 1]).id;
+          }
+          if (this.type === 'script') {
+            this.scriptService.getLogs(this.id, lastId).toPromise().then((body) => {
+                this.logs = this.logs.concat(body);
+                this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+            });
+          } else {
+            this.executionService.getLogs(this.id, lastId).toPromise().then((body) => {
+                this.logs = this.logs.concat(body);
+                this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+            });
+          }
         }
     }
 
