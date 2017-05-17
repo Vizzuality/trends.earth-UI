@@ -8,4 +8,5 @@ export interface ScriptModel {
   user_id: string
   created_at: Date
   user?: UserModel
+  public: boolean
 }

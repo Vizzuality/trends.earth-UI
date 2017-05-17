@@ -1,4 +1,5 @@
 import { ScriptModel } from 'app/models/script.model';
+import { UserModel } from 'app/models/user.model';
 
 export interface ExecutionModel {
   end_date: Date
@@ -10,4 +11,5 @@ export interface ExecutionModel {
   start_date: Date
   status: string
   script?: ScriptModel
+  user?: UserModel
 }

@@ -1,3 +1,4 @@
+import { NotificationsService } from 'angular2-notifications';
 import { MdDialogRef } from '@angular/material';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScriptService } from "app/services/script.service";
@@ -20,7 +21,7 @@ export class CreateScriptComponent implements OnInit {
   selectedFile: null;
   script: ScriptModel;
 
-  constructor(public dialogRef:MdDialogRef<CreateScriptComponent>, private scriptService:ScriptService){
+  constructor(public dialogRef:MdDialogRef<CreateScriptComponent>, private scriptService:ScriptService, private notificationsService: NotificationsService){
   }
 
   ngOnInit() { }
@@ -43,9 +44,9 @@ export class CreateScriptComponent implements OnInit {
     }
     stream$.toPromise().then(() => {
         this.dialogRef.close();
+        this.notificationsService.info('Success', 'Script created/updated successfully');
       }, (err) => {
-        console.error(err);
-        console.log(err);
+        this.notificationsService.error('Error', err.json().detail);
       });
   }
 }

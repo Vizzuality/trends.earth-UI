@@ -14,7 +14,7 @@ export class ExecutionService {
     }
 
     getAll():Observable<ExecutionModel[]>{
-        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script`)
+        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script,user`)
         .map(response => response.json()).map(body => body.data);
     }
 

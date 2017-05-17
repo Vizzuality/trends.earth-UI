@@ -15,10 +15,7 @@ import { NotificationsService } from "angular2-notifications";
 export class ExecScriptComponent implements OnInit {
 
   script: ScriptModel;
-  fields: any[] = [{
-    key: null,
-    value: null
-  }]
+  fields: any[] = []
 
   constructor(public dialogRef:MdDialogRef<ExecScriptComponent>, private scriptService: ScriptService, private notificationsService: NotificationsService){
   }
@@ -38,6 +35,9 @@ export class ExecScriptComponent implements OnInit {
   exec() {
     let query = '';
     this.fields.map((field) => {
+      if (query !== ''){
+        query += '&';
+      }
       query +=  `${field.key}=${field.value}`;
     });
 

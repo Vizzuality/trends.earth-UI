@@ -14,7 +14,7 @@
     <ng-template let-row="row" ngx-datatable-row-detail-template>
       <div style="padding-left:35px;">
         <div><strong>Detail</strong></div>
-
+            <div>Slug: {{row.slug}}</div>
             <div>Created at: {{row.created_at | date:'dd/MM/yyyy HH:mm'}}</div>
             <div>Owner: {{row.user?.email}}</div>
 
@@ -38,7 +38,24 @@
       </a>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Slug">
+  <!-- Column Templates -->
+    <ngx-datatable-column
+    [width]="50"
+    [resizeable]="false"
+    [sortable]="false"
+    [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <md-icon class="icon-button" (click)="changeVisibility(row)" *ngIf="row.public" mdTooltip="Public script">public</md-icon>
+      <md-icon class="icon-button" (click)="changeVisibility(row)" *ngIf="!row.public" mdTooltip="Private script">lock</md-icon>
+    </ng-template>
+  </ngx-datatable-column>
+
+
+  <ngx-datatable-column name="Owner" [width]="250">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.user.email}}
+    </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-column name="Name">
   </ngx-datatable-column>

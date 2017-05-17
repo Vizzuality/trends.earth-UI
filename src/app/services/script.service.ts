@@ -46,4 +46,14 @@ export class ScriptService {
       return this.http.get(`${environment.apiUrl}/api/v1/script/${slug}/run?${query}`).map(response => response.json()).map(el => el.data);
     }
 
+    toggleVisibility(script: ScriptModel) : Observable<ScriptModel> {
+      let url = `${environment.apiUrl}/api/v1/script/${script.slug}`;
+      if (script.public) {
+        url = `${url}/unpublish`
+      } else {
+        url = `${url}/publish`
+      }
+      return this.http.post(url, {}).map(response => response.json());
+    }
+
 }

@@ -1,3 +1,5 @@
+import { NotificationsService } from 'angular2-notifications';
+import { AuthService } from 'app/services/auth.service';
 import { Observer } from 'rxjs/Rx';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScriptService } from "app/services/script.service";
@@ -24,8 +26,10 @@ export class ScriptComponent implements OnInit{
     @ViewChild('datatable')
     table = null;
 
-    constructor(private scriptService:ScriptService, private mdDialog:MdDialog){
+    user = null;
 
+    constructor(private scriptService:ScriptService, private mdDialog:MdDialog, private authService: AuthService, private notificationsService: NotificationsService){
+      this.user = this.authService.user;
     }
 
     ngOnInit() {
@@ -73,6 +77,23 @@ export class ScriptComponent implements OnInit{
 
     downloadScript(row) {
       this.scriptService.downloadScript(row.slug);
+    }
+
+    changeVisibility(row) {
+      if (row.user_id !== this.user.id && this.user.role !== 'ADMIN') {
+        return;
+      }
+      let confirm = null;
+      if (row.public) {
+        confirm = window.confirm('Are you sure that you want to do the script private?');
+      } else {
+        confirm = window.confirm('Are you sure that you want to do the script public?');
+      }
+      if (confirm) {
+        this.scriptService.toggleVisibility(row).toPromise().then(() => {
+          this.update();
+        });
+      }
     }
 
     dateComparator(a, b) {
