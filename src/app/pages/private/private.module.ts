@@ -18,7 +18,6 @@ import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
-import { CountryPickerModule } from 'angular2-countrypicker';
 import { ResultViewerComponent } from 'app/pages/private/execution/result-viewer/result-viewer.component';
 import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
 import { CreateUserComponent } from "app/pages/private/user/create-user/create-user.component";
