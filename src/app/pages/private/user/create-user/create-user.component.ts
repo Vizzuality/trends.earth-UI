@@ -28,7 +28,7 @@ export class CreateUserComponent {
 
   createUser(form:any) {
     this.state = State.REQUESTING;
-    this.userService.create(form.email, form.role)
+    this.userService.create(form)
     .then(() => {
         this.state = State.SUCCESS;
         this.notificationsService.success('User created correctly');

@@ -24,12 +24,13 @@ export class UpdateUserComponent {
   roles:Array<string> = ['USER', 'ADMIN'];
   role:string = 'USER';
   id:string = null;
+  user = null;
 
   constructor(public dialogRef:MdDialogRef<UpdateUserComponent>, private userService:UserService,  private notificationsService: NotificationsService) { }
 
   createUser(form:any) {
     this.state = State.REQUESTING;
-    this.userService.update(this.id, form.role)
+    this.userService.update(this.id, form)
     .then(() => {
         this.state = State.SUCCESS;
         this.notificationsService.success('User updated correctly');

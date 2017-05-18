@@ -41,6 +41,7 @@ export class UserComponent implements OnInit{
       let dialogRef = this.mdDialog.open(UpdateUserComponent)
       dialogRef.componentInstance.id = row.id;
       dialogRef.componentInstance.role = row.role;
+      dialogRef.componentInstance.user = row;
       dialogRef.afterClosed().toPromise().then(() => {
         this.updateUsersInfo();
       });

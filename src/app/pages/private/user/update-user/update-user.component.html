@@ -1,18 +1,35 @@
 <div md-dialog-content #content>
   <h4>Update user</h4>
+    <div class="create-user">
 
-    <form #form="ngForm" (ngSubmit)="form.valid && createUser(form.value)">
-      <md-select placeholder="Role" [(ngModel)]="role" name="role">
-        <md-option *ngFor="let role of roles" [value]="role">{{ role }}</md-option>
-      </md-select>
+        <form #form="ngForm" (ngSubmit)="form.valid && createUser(form.value)"  style="display: flex;  flex-direction: column">
+          <div class="row">
+            <md-input-container>
+                <input mdInput placeholder="Name" required type="text" name="name" [ngModel]="user.name" #name="ngModel">
+                <md-error *ngIf="name.errors?.required">Name is required</md-error>
+            </md-input-container>
+            <md-select placeholder="Role" [(ngModel)]="user.role" name="role">
+                <md-option *ngFor="let role of roles" [value]="role">{{ role }}</md-option>
+            </md-select>
+          </div>
+          <div class="row">
+            <md-input-container>
+                <input mdInput placeholder="Country"  type="text" name="country" [ngModel]="user.country" >
+            </md-input-container>
+            <md-input-container>
+                <input mdInput placeholder="Institution"  type="text" name="institution" [ngModel]="user.institution" >
+            </md-input-container>
+          </div>
+          <div class="row">
 
-    </form>
-    <md-error class="unauthorized" *ngIf="state == State.ERROR">Error updating user</md-error>
-    <md-error class="unauthorized" *ngIf="state == State.SUCCESS">User updated successfully</md-error>
+          </div>
+        </form>
+        <md-error class="unauthorized" *ngIf="state == State.ERROR">Error updating user</md-error>
 
-
+    </div>
 
 </div>
+
 <div md-dialog-actions class="buttons">
   <button md-button (click)="form.valid && createUser(form.value)">Save</button>
   <button md-button md-dialog-close>Close</button>

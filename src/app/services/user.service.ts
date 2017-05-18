@@ -16,18 +16,13 @@ export class UserService {
         .map(response => response.json()).map(body => body.data);
     }
 
-    create(email:string, role:string){
-        return this.http.post(`${environment.apiUrl}/api/v1/user`, {
-            email,
-            role
-        })
+    create(user){
+        return this.http.post(`${environment.apiUrl}/api/v1/user`, user)
         .map(response => response.json()).map(body => body.data).toPromise();
     }
 
-    update(userId:string, role:string){
-        return this.http.patch(`${environment.apiUrl}/api/v1/user/${userId}`, {
-            role
-        })
+    update(userId:string, user){
+        return this.http.patch(`${environment.apiUrl}/api/v1/user/${userId}`, user)
         .map(response => response.json()).map(body => body.data).toPromise();
     }
 
