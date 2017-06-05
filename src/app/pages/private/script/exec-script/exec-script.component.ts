@@ -33,15 +33,15 @@ export class ExecScriptComponent implements OnInit {
   }
 
   exec() {
-    let query = '';
-    this.fields.map((field) => {
-      if (query !== ''){
-        query += '&';
-      }
-      query +=  `${field.key}=${field.value}`;
-    });
+    // let query = '';
+    // this.fields.map((field) => {
+    //   if (query !== ''){
+    //     query += '&';
+    //   }
+    //   query +=  `${field.key}=${field.value}`;
+    // });
 
-    this.scriptService.runScript(this.script.slug, query).toPromise().then((el) => {
+    this.scriptService.runScript(this.script.slug, this.fields).toPromise().then((el) => {
       this.notificationsService.success(`Script running with id: ${el.id}`);
       this.dialogRef.close();
     });

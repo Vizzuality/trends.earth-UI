@@ -66,6 +66,11 @@
       {{row.created_at | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
   </ngx-datatable-column>
+  <ngx-datatable-column name="Updated date"  prop="updated_at" [comparator]="dateComparator">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.updated_at | date: 'dd/MM/yy HH:mm:ss'}}
+    </ng-template>
+  </ngx-datatable-column>
   <ngx-datatable-column
     [width]="170"
     [resizeable]="false"

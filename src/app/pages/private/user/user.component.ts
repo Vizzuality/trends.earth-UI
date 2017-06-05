@@ -64,4 +64,13 @@ export class UserComponent implements OnInit{
       }
     }
 
+    dateComparator(a, b) {
+      if (!a) {
+        return b;
+      } else if (!b) {
+        return a;
+      }
+      return new Date(b).getTime() - new Date(a).getTime();
+    }
+
 }
