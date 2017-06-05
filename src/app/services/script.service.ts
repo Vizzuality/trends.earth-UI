@@ -42,8 +42,8 @@ export class ScriptService {
       window.open(`${environment.apiUrl}/api/v1/script/${slug}/download?token=${this.tokenService.token}`);
     }
 
-    runScript(slug, query): Observable<ExecutionModel> {
-      return this.http.get(`${environment.apiUrl}/api/v1/script/${slug}/run?${query}`).map(response => response.json()).map(el => el.data);
+    runScript(slug, fields): Observable<ExecutionModel> {
+      return this.http.post(`${environment.apiUrl}/api/v1/script/${slug}/run`, fields).map(response => response.json()).map(el => el.data);
     }
 
     toggleVisibility(script: ScriptModel) : Observable<ScriptModel> {
@@ -54,6 +54,10 @@ export class ScriptService {
         url = `${url}/publish`
       }
       return this.http.post(url, {}).map(response => response.json());
+    }
+
+    deleteScript(id: number): Observable<ScriptModel> {
+      return this.http.delete(`${environment.apiUrl}/api/v1/script/${id}`).map(response => response.json()).map(el => el.data);
     }
 
 }

@@ -1,3 +1,4 @@
+import { NotificationsService } from 'angular2-notifications';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from "app/services/user.service";
 import { Observable } from "rxjs/Observable";
@@ -22,7 +23,7 @@ export class UserComponent implements OnInit{
     @ViewChild('datatable')
     table = null;
 
-    constructor(private userService:UserService, private mdDialog:MdDialog){
+    constructor(private userService:UserService, private mdDialog:MdDialog,  private notificationsService: NotificationsService){
 
     }
 
@@ -51,6 +52,16 @@ export class UserComponent implements OnInit{
       this.userService.getAll().toPromise().then((body) => {
         this.observer.next(body);
       });
+    }
+
+    deleteUser(user) {
+      const deleteUser = window.confirm('Are you sure that you want delete the user?');
+      if (deleteUser) {
+        this.userService.deleteUser(user.id).toPromise().then(() => {
+          this.notificationsService.success(`Script deleted correctly`);
+          this.updateUsersInfo();
+        });
+      }
     }
 
 }

@@ -22,6 +22,7 @@ export class LogViewerComponent implements OnDestroy {
     id:string;
     type: string;
     interval;
+    first: boolean = true;
 
     constructor(public dialogRef:MdDialogRef<LogViewerComponent>, private scriptService:ScriptService, private executionService: ExecutionService){
       this.updateLog();
@@ -37,12 +38,18 @@ export class LogViewerComponent implements OnDestroy {
           if (this.type === 'script') {
             this.scriptService.getLogs(this.id, lastId).toPromise().then((body) => {
                 this.logs = this.logs.concat(body);
-                this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+                if (this.first) {
+                  this.first = false;
+                  this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+                }
             });
           } else {
             this.executionService.getLogs(this.id, lastId).toPromise().then((body) => {
                 this.logs = this.logs.concat(body);
-                this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+                if (this.first) {
+                  this.first = false;
+                  this.content.nativeElement.scrollTop = this.content.nativeElement.scrollHeight;
+                }
             });
           }
         }

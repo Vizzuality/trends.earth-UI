@@ -1,3 +1,5 @@
+import { UserModel } from 'app/models/user.model';
+import { Observable } from 'rxjs/Observable';
 
 import { Injectable } from "@angular/core";
 import { environment } from "environments/environment";
@@ -29,6 +31,10 @@ export class UserService {
     changePassword(data) {
       return this.http.patch(`${environment.apiUrl}/api/v1/user/me`, data)
         .map(response => response.json()).map(body => body.data).toPromise();
+    }
+
+    deleteUser(id: number): Observable<UserModel> {
+      return this.http.delete(`${environment.apiUrl}/api/v1/user/${id}`).map(response => response.json()).map(el => el.data);
     }
 
 

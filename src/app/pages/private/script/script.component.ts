@@ -75,6 +75,16 @@ export class ScriptComponent implements OnInit{
       dialogRef.componentInstance.script = script;
     }
 
+    deleteScript(script) {
+      const deleteScript = window.confirm('Are you sure that you want delete the script?');
+      if (deleteScript) {
+        this.scriptService.deleteScript(script.id).toPromise().then(() => {
+          this.notificationsService.success(`Script deleted correctly`);
+          this.update();
+        });
+      }
+    }
+
     downloadScript(row) {
       this.scriptService.downloadScript(row.slug);
     }
