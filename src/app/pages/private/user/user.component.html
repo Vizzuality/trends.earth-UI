@@ -1,5 +1,5 @@
 <button class="fixed-button" mdTooltip="Create User" [mdTooltipPosition]="'left'" md-fab (click)="createUser()"><md-icon>add</md-icon></button>
-<ngx-datatable
+<ngx-datatable *ngIf="user.role === 'ADMIN'"
   #datatable
   class='material expandable'
   [columnMode]="'force'"

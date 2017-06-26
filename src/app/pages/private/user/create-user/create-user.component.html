@@ -22,7 +22,7 @@
                 <input mdInput placeholder="Institution" required type="text" name="institution" ngModel >
             </md-input-container>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="user.role === 'ADMIN'">
             <md-select placeholder="Role" [(ngModel)]="role" name="role">
                 <md-option *ngFor="let role of roles" [value]="role">{{ role }}</md-option>
             </md-select>

@@ -7,7 +7,7 @@
             <ul>
                 <li><a md-button [routerLink]="['/private', 'script']" routerLinkActive="mat-primary"><md-icon class="icon">code</md-icon>Scripts</a></li>
                 <li><a md-button [routerLink]="['/private', 'execution']" routerLinkActive="mat-primary"><md-icon class="icon">play_arrow</md-icon>Executions</a></li>
-                <li *ngIf="user.role === 'ADMIN'"><a md-button [routerLink]="['/private', 'user']" routerLinkActive="mat-primary"><md-icon class="icon">people</md-icon>Users</a></li>
+                <li><a md-button [routerLink]="['/private', 'user']" routerLinkActive="mat-primary"><md-icon class="icon">people</md-icon>Users</a></li>
                 <li><a md-button [routerLink]="['/private', 'profile']" routerLinkActive="mat-primary"><md-icon class="icon">person</md-icon>Profile</a></li>
             </ul>
         </md-sidenav>
@@ -17,6 +17,3 @@
         </div>
     </md-sidenav-container>
 </div>
-
-
-
