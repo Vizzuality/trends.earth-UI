@@ -1,40 +1,46 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
-
-html, body, app-root, gef-private{
-    font-family: Roboto, sans-serif;
-    margin: 0;
-    width: 100%;
-    height: 100%;
+html,
+body,
+app-root,
+gef-private {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #444;
+  &>.menu {
     display: flex;
-    flex-direction: column;
-    color: #444;
-
-    &>.menu {
-        display: flex;
-        flex: 1 1 auto;
-        md-sidenav-container{
-            display: block;
-            width: 100%;
-        }
+    flex: 1 1 auto;
+    md-sidenav-container {
+      display: block;
+      width: 100%;
     }
-
+  }
 }
-html, body {
-  .fixed-button{
-      position: fixed;
-      right: 3%;
-      bottom: 24px;
-      z-index: 100;
-      &.level-2 {
-        bottom: 86px;
-        right: 3.7%;
-      }
+
+html,
+body {
+  .fixed-button {
+    position: fixed;
+    right: 3%;
+    bottom: 24px;
+    z-index: 100;
+    &.level-2 {
+      bottom: 86px;
+      right: 3.7%;
     }
-    .icon-button {
-      cursor: pointer;
-    }
+  }
+  .icon-button {
+    cursor: pointer;
+  }
+  .ngx-datatable .datatable-body .datatable-row-detail {
+    overflow-y: scroll;
+  }
+  .mat-select-trigger {
+        margin-top: 9px;
+  }
 }

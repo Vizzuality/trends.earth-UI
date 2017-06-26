@@ -3,6 +3,7 @@ import { ExecutionModel } from 'app/models/execution.model';
 import { Injectable } from "@angular/core";
 import { environment } from "environments/environment";
 import { Http } from "@angular/http";
+import { ExecutionLogModel } from "app/models/execution-log.model";
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class ExecutionService {
     }
 
     getAll():Observable<ExecutionModel[]>{
-        return this.http.get(`${environment.apiUrl}/api/v1/execution`)
+        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script,user`)
         .map(response => response.json()).map(body => body.data);
     }
 
@@ -22,4 +23,12 @@ export class ExecutionService {
         .map(response => response.json()).map(body => body.data);
     }
 
+    downloadResults(id:string) {
+      window.open(`${environment.apiUrl}/api/v1/execution/${id}/download-results`)
+    }
+
+    getLogs(executionId, lastLogId?): Observable<ExecutionLogModel[]>{
+        return this.http.get(`${environment.apiUrl}/api/v1/execution/${executionId}/log${lastLogId ? `?last-id=${lastLogId}`:''}`)
+        .map(response => response.json()).map(body => body.data);
+    }
 }

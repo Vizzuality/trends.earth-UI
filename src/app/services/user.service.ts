@@ -1,3 +1,5 @@
+import { UserModel } from 'app/models/user.model';
+import { Observable } from 'rxjs/Observable';
 
 import { Injectable } from "@angular/core";
 import { environment } from "environments/environment";
@@ -16,21 +18,23 @@ export class UserService {
         .map(response => response.json()).map(body => body.data);
     }
 
-    create(email:string, password:string, role:string){
-        return this.http.post(`${environment.apiUrl}/api/v1/user`, {
-            email,
-            password,
-            role
-        })
+    create(user){
+        return this.http.post(`${environment.apiUrl}/api/v1/user`, user)
         .map(response => response.json()).map(body => body.data).toPromise();
     }
 
-    update(userId:string, password:string, role:string){
-        return this.http.patch(`${environment.apiUrl}/api/v1/user/${userId}`, {
-            password,
-            role
-        })
+    update(userId:string, user){
+        return this.http.patch(`${environment.apiUrl}/api/v1/user/${userId}`, user)
         .map(response => response.json()).map(body => body.data).toPromise();
+    }
+
+    changePassword(data) {
+      return this.http.patch(`${environment.apiUrl}/api/v1/user/me`, data)
+        .map(response => response.json()).map(body => body.data).toPromise();
+    }
+
+    deleteUser(id: number): Observable<UserModel> {
+      return this.http.delete(`${environment.apiUrl}/api/v1/user/${id}`).map(response => response.json()).map(el => el.data);
     }
 
 

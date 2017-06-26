@@ -21,6 +21,6 @@ export class ResultViewerComponent implements OnInit {
   ngOnInit() { }
 
   downloadResults() {
-
+    this.executionService.downloadResults(this.execution.id);
   }
 }

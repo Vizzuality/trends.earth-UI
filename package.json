@@ -1,6 +1,6 @@
 {
   "name": "gef-ui",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build -prod -sm -ec -bh /reponame/ && gh-pages -d dist"
+    "build-prod": "ng build -prod -sm -ec -bh",
+    "deploy": "ng build -prod -sm -ec -bh /GEF-UI/ && gh-pages -d dist"
   },
   "private": true,
   "dependencies": {
@@ -19,11 +20,12 @@
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
-    "@angular/material": "^2.0.0-beta.3",
+    "@angular/material": "2.0.0-beta.3",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@swimlane/ngx-datatable": "^7.3.0",
+    "angular2-notifications": "git+https://github.com/vizzuality/angular2-notifications",
     "core-js": "^2.4.1",
     "ng2-http-interceptor": "^1.4.0",
     "ng2-validation": "^4.0.0",

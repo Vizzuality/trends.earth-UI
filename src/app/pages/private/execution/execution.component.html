@@ -9,11 +9,15 @@
   [scrollbarV]="50"
   [rows]='executions$ | async'>
   <!-- Row Detail Template -->
-  <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+  <ngx-datatable-row-detail [rowHeight]="150" #myDetailRow>
     <ng-template let-row="row" ngx-datatable-row-detail-template>
-      <div style="padding-left:35px;">
-        <div><strong>Address</strong></div>
-        <div>{{row.name}}, {{row.id}}</div>
+      <div style="padding: 0 0 20px 35px;">
+        <div><strong>Detail</strong></div>
+        <div>Id: {{row.script?.id}}</div>
+        <div>Script: {{row.script?.name}}</div>
+        <div>Start: {{row.start_date | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+        <div *ngIf="row.end_date">End: {{row.end_date | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+        <div>Execution params: <pre>{{row.params | json}}</pre></div>
       </div>
     </ng-template>
   </ngx-datatable-row-detail>
@@ -34,14 +38,17 @@
       </a>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Id">
-  </ngx-datatable-column>
-  <ngx-datatable-column name="Start">
+  <ngx-datatable-column name="Owner" [width]="250">
     <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.user?.email}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Start" prop="start_date" [comparator]="dateComparator">
+    <ng-template let-row="row"  ngx-datatable-cell-template>
       {{row.start_date | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="End">
+  <ngx-datatable-column name="End" prop="end_date" [comparator]="dateComparator">
     <ng-template let-row="row" ngx-datatable-cell-template>
       {{row.end_date | date: 'dd/MM/yy HH:mm:ss'}}
     </ng-template>
@@ -70,8 +77,8 @@
     [draggable]="false"
     [canAutoResize]="false">
     <ng-template let-row="row" ngx-datatable-cell-template>
-      <md-icon class="icon-button" (click)="viewResults(row)" mdTooltip="View results">subject</md-icon>
-      <md-icon class="icon-button" (click)="downloadResults(row)" mdTooltip="Download results">file_download</md-icon>
+      <md-icon class="icon-button" (click)="viewLogs(row)" mdTooltip="View logs">subject</md-icon>
+      <md-icon class="icon-button" (click)="viewResults(row)" mdTooltip="View results">file_download</md-icon>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>

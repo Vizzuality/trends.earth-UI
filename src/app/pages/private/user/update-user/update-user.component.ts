@@ -1,3 +1,5 @@
+import { NotificationsService } from 'angular2-notifications';
+import { MdDialogRef } from '@angular/material';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user.service";
@@ -22,17 +24,21 @@ export class UpdateUserComponent {
   roles:Array<string> = ['USER', 'ADMIN'];
   role:string = 'USER';
   id:string = null;
+  user = null;
 
-  constructor(private userService:UserService) { }
+  constructor(public dialogRef:MdDialogRef<UpdateUserComponent>, private userService:UserService,  private notificationsService: NotificationsService) { }
 
   createUser(form:any) {
     this.state = State.REQUESTING;
-    this.userService.update(this.id, form.password, form.role)
+    this.userService.update(this.id, form)
     .then(() => {
         this.state = State.SUCCESS;
+        this.notificationsService.success('User updated correctly');
+        this.dialogRef.close();
     })
-    .catch(() => {
+    .catch((error) => {
         this.state = State.ERROR;
+        this.notificationsService.error('Error updating user', error.message);
     });
   }
 

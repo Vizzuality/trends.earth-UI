@@ -1,3 +1,4 @@
+import { ExecScriptComponent } from 'app/pages/private/script/exec-script/exec-script.component';
 import { NgModule } from '@angular/core';
 import { ScriptComponent } from "app/pages/private/script/script.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -23,7 +24,8 @@ import { CreateUserComponent } from "app/pages/private/user/create-user/create-u
 import { UpdateUserComponent } from "app/pages/private/user/update-user/update-user.component";
 import { LoadingInterceptor } from "app/services/loading-interceptor.service";
 import { HttpInterceptorModule } from "ng2-http-interceptor/dist";
-
+import { ProfileComponent } from "app/pages/private/profile/profile.component";
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 const routes: Routes = [
     {
@@ -51,6 +53,10 @@ const routes: Routes = [
             {
                 path: 'user',
                 component: UserComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent
             }
         ]
     }
@@ -67,7 +73,9 @@ const routes: Routes = [
         CreateScriptComponent,
         CreateUserComponent,
         UpdateUserComponent,
-        ResultViewerComponent
+        ResultViewerComponent,
+        ProfileComponent,
+        ExecScriptComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -75,6 +83,7 @@ const routes: Routes = [
         NgxDatatableModule,
         CommonModule,
         FormsModule,
+        SimpleNotificationsModule.forRoot(),
         CustomFormsModule,
         HttpInterceptorModule
     ],
@@ -83,7 +92,8 @@ const routes: Routes = [
         CreateScriptComponent,
         CreateUserComponent,
         UpdateUserComponent,
-        ResultViewerComponent
+        ResultViewerComponent,
+        ExecScriptComponent
     ],
     providers: [
         { provide: RequestOptions, useClass: OauthRequestOptions },

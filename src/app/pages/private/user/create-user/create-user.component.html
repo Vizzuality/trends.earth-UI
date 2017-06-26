@@ -1,34 +1,41 @@
 <div md-dialog-content #content>
-
+  <h4>Create user</h4>
     <div class="create-user">
-      
-        <form #form="ngForm" (ngSubmit)="form.valid && createUser(form.value)">
+
+        <form #form="ngForm" (ngSubmit)="form.valid && createUser(form.value)"  style="display: flex;  flex-direction: column">
+          <div class="row">
+            <md-input-container>
+                <input mdInput placeholder="Name" required type="text" name="name" ngModel #name="ngModel">
+                <md-error *ngIf="name.errors?.required">Name is required</md-error>
+            </md-input-container>
             <md-input-container>
                 <input mdInput placeholder="Email" required type="email" name="email" ngModel #email="ngModel" email>
                 <md-error *ngIf="email.errors?.required">Email is required</md-error>
                 <md-error *ngIf="email.errors?.email && !email.errors?.required">Should be a valid email</md-error>
             </md-input-container>
+          </div>
+          <div class="row">
             <md-input-container>
-                <input mdInput placeholder="Password" required type="password" name="password" ngModel #password="ngModel">
-                <md-error *ngIf="password.errors?.required">Password is required</md-error>
+                <input mdInput placeholder="Country" required type="text" name="country" ngModel >
             </md-input-container>
             <md-input-container>
-                <input mdInput placeholder="Repeat Password" required type="password" name="certainPassword" ngModel #certainPassword="ngModel" [equalTo]="password">
-                <md-error *ngIf="certainPassword.errors?.equalTo">Passwords are not equal</md-error>
+                <input mdInput placeholder="Institution" required type="text" name="institution" ngModel >
             </md-input-container>
+          </div>
+          <div class="row" *ngIf="user.role === 'ADMIN'">
             <md-select placeholder="Role" [(ngModel)]="role" name="role">
                 <md-option *ngFor="let role of roles" [value]="role">{{ role }}</md-option>
             </md-select>
-            <div class="submit-button">
-                <button mdInput md-raised-button color="primary" type="submit">
-                    <span>SEND</span>
-                    <!--<md-progress-spinner mode="indeterminate" color="warn" *ngIf="state == State.REQUESTING"></md-progress-spinner>-->
-                </button>
-            </div>
+          </div>
         </form>
         <md-error class="unauthorized" *ngIf="state == State.ERROR">Error creating user</md-error>
         <md-error class="unauthorized" *ngIf="state == State.SUCCESS">User created successfully</md-error>
 
     </div>
-    
+
+</div>
+
+<div md-dialog-actions class="buttons">
+  <button md-button (click)="form.valid && createUser(form.value)">Save</button>
+  <button md-button md-dialog-close>Close</button>
 </div>

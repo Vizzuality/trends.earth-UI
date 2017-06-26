@@ -1,3 +1,5 @@
+import { NotificationsService } from 'angular2-notifications';
+import { AuthService } from 'app/services/auth.service';
 import { Observer } from 'rxjs/Rx';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ScriptService } from "app/services/script.service";
@@ -6,6 +8,7 @@ import { LogViewerComponent } from "app/shared/log-viewer/log-viewer.component";
 import { MdDialog } from "@angular/material";
 import { CreateScriptComponent } from "app/pages/private/script/create-script/create-script.component";
 import { ScriptModel } from "app/models/script.model";
+import { ExecScriptComponent } from "app/pages/private/script/exec-script/exec-script.component";
 
 @Component({
   selector: 'gef-ui-script',
@@ -23,8 +26,10 @@ export class ScriptComponent implements OnInit{
     @ViewChild('datatable')
     table = null;
 
-    constructor(private scriptService:ScriptService, private mdDialog:MdDialog){
+    user = null;
 
+    constructor(private scriptService:ScriptService, private mdDialog:MdDialog, private authService: AuthService, private notificationsService: NotificationsService){
+      this.user = this.authService.user;
     }
 
     ngOnInit() {
@@ -62,8 +67,52 @@ export class ScriptComponent implements OnInit{
       dialogRef.componentInstance.script = script;
     }
 
-    downloadScript(row) {
+    execScript(script) {
+      const dialogRef = this.mdDialog.open(ExecScriptComponent);
+      dialogRef.afterClosed().toPromise().then(() => {
+        this.update();
+      });
+      dialogRef.componentInstance.script = script;
+    }
 
+    deleteScript(script) {
+      const deleteScript = window.confirm('Are you sure that you want delete the script?');
+      if (deleteScript) {
+        this.scriptService.deleteScript(script.id).toPromise().then(() => {
+          this.notificationsService.success(`Script deleted correctly`);
+          this.update();
+        });
+      }
+    }
+
+    downloadScript(row) {
+      this.scriptService.downloadScript(row.slug);
+    }
+
+    changeVisibility(row) {
+      if (row.user_id !== this.user.id && this.user.role !== 'ADMIN') {
+        return;
+      }
+      let confirm = null;
+      if (row.public) {
+        confirm = window.confirm('Are you sure that you want to do the script private?');
+      } else {
+        confirm = window.confirm('Are you sure that you want to do the script public?');
+      }
+      if (confirm) {
+        this.scriptService.toggleVisibility(row).toPromise().then(() => {
+          this.update();
+        });
+      }
+    }
+
+    dateComparator(a, b) {
+      if (!a) {
+        return b;
+      } else if (!b) {
+        return a;
+      }
+      return new Date(b).getTime() - new Date(a).getTime();
     }
 
 }

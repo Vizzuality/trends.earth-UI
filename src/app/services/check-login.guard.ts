@@ -6,7 +6,7 @@ import { AuthService } from "app/services/auth.service";
 export class CheckLoginGuard implements CanActivateChild {
 
     constructor(private authService:AuthService, private router: Router){
-        
+
     }
 
     canActivateChild() {

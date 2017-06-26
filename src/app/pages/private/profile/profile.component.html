@@ -1,0 +1,17 @@
+<h2>Change password</h2>
+<form #form="ngForm" (ngSubmit)="form.valid && changePassword(form.value)">
+  <div class="file">
+    <md-input-container>
+      <input mdInput placeholder="Password" required type="password" name="password" ngModel #password="ngModel">
+      <md-error *ngIf="password.errors?.required">Password is required</md-error>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Repeat Password" required type="password" name="repeatPassword" ngModel #repeatPassword="ngModel"
+        [equalTo]="password">
+      <md-error *ngIf="repeatPassword.errors?.equalTo">Passwords are not equal</md-error>
+    </md-input-container>
+    <div>
+      <button md-button type="submit" [disabled]="!form.valid">Change</button>
+    </div>
+  </div>
+</form>
