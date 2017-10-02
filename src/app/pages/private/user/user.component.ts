@@ -6,6 +6,7 @@ import { MdDialog } from "@angular/material";
 import { CreateUserComponent } from "app/pages/private/user/create-user/create-user.component";
 import { UpdateUserComponent } from "app/pages/private/user/update-user/update-user.component";
 import { Observer } from "rxjs/Rx";
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'gef-ui-user',
@@ -15,7 +16,7 @@ import { Observer } from "rxjs/Rx";
   ]
 })
 export class UserComponent implements OnInit{
-
+    user: any
     users$:Observable<any> = Observable.create(observer => {
       this.observer = observer;
     });
@@ -23,8 +24,8 @@ export class UserComponent implements OnInit{
     @ViewChild('datatable')
     table = null;
 
-    constructor(private userService:UserService, private mdDialog:MdDialog,  private notificationsService: NotificationsService){
-
+    constructor(private userService:UserService, private mdDialog:MdDialog,  private notificationsService: NotificationsService, private authService: AuthService){
+        this.user = this.authService.user;
     }
 
     ngOnInit(){

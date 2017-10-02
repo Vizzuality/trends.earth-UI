@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "app/services/user.service";
 import { NotificationsService } from "angular2-notifications";
-
+import { AuthService } from 'app/services/auth.service';
 
  enum State {
     PENDING,
@@ -19,12 +19,15 @@ import { NotificationsService } from "angular2-notifications";
 })
 export class CreateUserComponent {
 
+  user: any
   State:typeof State = State;
   state:State = State.PENDING;
   roles:Array<string> = ['USER', 'ADMIN'];
   role:string = 'USER';
 
-  constructor(public dialogRef:MdDialogRef<CreateUserComponent>, private userService:UserService, private notificationsService: NotificationsService) { }
+  constructor(public dialogRef:MdDialogRef<CreateUserComponent>, private userService:UserService, private notificationsService: NotificationsService, private authService: AuthService) {
+    this.user = this.authService.user;
+  }
 
   createUser(form:any) {
     this.state = State.REQUESTING;
