@@ -13,8 +13,8 @@ export class ExecutionService {
 
     }
 
-    getAll():Observable<ExecutionModel[]>{
-        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script,user`)
+    getAll(date: string):Observable<ExecutionModel[]>{
+        return this.http.get(`${environment.apiUrl}/api/v1/execution?include=script,user&updated_at=${date}`)
         .map(response => response.json()).map(body => body.data);
     }
 

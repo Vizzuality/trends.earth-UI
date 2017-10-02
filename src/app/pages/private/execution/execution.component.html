@@ -1,4 +1,11 @@
 <button class="fixed-button" md-fab (click)="update()"><md-icon>refresh</md-icon></button>
+<div class="filters">
+  <label for="from">
+    From:
+  </label>
+  <material-datepicker id="from" (dateChange)="update()" [(date)]="dateFilter" dateFormat="YYYY-MM-DD"></material-datepicker>
+</div>
+
 <ngx-datatable
   #datatable
   class='material expandable'

@@ -15,6 +15,7 @@ import { LoginComponent } from "app/pages/login/login.component";
 import { OauthRequestOptions } from "app/services/oauth-request.service";
 import { AuthService, TokenService } from "app/services/auth.service";
 import { RecoverPasswordComponent } from "app/pages/recover-password/recover-password.component";
+import { DatepickerModule } from 'angular2-material-datepicker'
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RecoverPasswordComponent } from "app/pages/recover-password/recover-pas
     BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
     MaterialRootModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DatepickerModule
   ],
   providers: [
     TokenService,

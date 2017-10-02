@@ -1,5 +1,7 @@
 import { ExecScriptComponent } from 'app/pages/private/script/exec-script/exec-script.component';
 import { NgModule } from '@angular/core';
+import { DatepickerModule } from 'angular2-material-datepicker'
+
 import { ScriptComponent } from "app/pages/private/script/script.component";
 import { RouterModule, Routes } from "@angular/router";
 import { PrivateComponent } from "app/pages/private/private.component";
@@ -85,7 +87,8 @@ const routes: Routes = [
         FormsModule,
         SimpleNotificationsModule.forRoot(),
         CustomFormsModule,
-        HttpInterceptorModule
+        HttpInterceptorModule,
+        DatepickerModule
     ],
     entryComponents: [
         LogViewerComponent,

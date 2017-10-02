@@ -20,6 +20,7 @@ export class ExecutionComponent implements OnInit{
     @ViewChild('datatable')
     table = null;
 
+    dateFilter: Date = new Date();
     executions$:Observable<ExecutionModel> = Observable.create(observer => {
       this.observer = observer;
     });
@@ -39,7 +40,7 @@ export class ExecutionComponent implements OnInit{
       if (slug) {
         stream$ = this.executionService.getByScript(slug);
       } else {
-        stream$ = this.executionService.getAll();
+        stream$ = this.executionService.getAll(this.dateFilter.toISOString().slice(0, 10));
       }
 
       stream$.toPromise().then((body) => {
